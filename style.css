@@ -19,7 +19,8 @@ footer {
   display: flex;
   gap: 4px;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 48px;
+  opacity: 0.5;
 }
 
 img {

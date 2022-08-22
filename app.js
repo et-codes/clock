@@ -10,7 +10,7 @@ const getTime = () => {
   return timeString;
 };
 
-const ordinalDate = (date) => {
+const getOrdinalDate = (date) => {
   const j = date % 10
   const k = date % 100;
   if (j == 1 && k != 11) {
@@ -28,7 +28,8 @@ const ordinalDate = (date) => {
 const getDate = () => {
   const date = new Date();
   const day = [
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday',
+    'Thursday', 'Friday', 'Saturday'
   ];
   const month = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -38,7 +39,7 @@ const getDate = () => {
   const dateString = [
     day[date.getDay()] + ',',
     month[date.getMonth()],
-    ordinalDate(date.getDate()) + ',',
+    getOrdinalDate(date.getDate()) + ',',
     date.getFullYear()
   ].join(' ');
 
