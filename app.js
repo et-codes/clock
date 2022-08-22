@@ -10,6 +10,21 @@ const getTime = () => {
   return timeString;
 };
 
+const ordinalDate = (date) => {
+  const j = date % 10
+  const k = date % 100;
+  if (j == 1 && k != 11) {
+    return date + 'st';
+  }
+  if (j == 2 && k != 12) {
+    return date + 'nd';
+  }
+  if (j == 3 && k != 13) {
+    return date + 'rd';
+  }
+  return date + 'th';
+};
+
 const getDate = () => {
   const date = new Date();
   const day = [
@@ -23,12 +38,9 @@ const getDate = () => {
   const dateString = [
     day[date.getDay()] + ',',
     month[date.getMonth()],
-    date.getDate(),
+    ordinalDate(date.getDate()) + ',',
     date.getFullYear()
   ].join(' ');
-
-  // The following technically meets the rules.  Allowed?
-  // const dateString = new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(date);
 
   return dateString;
 };

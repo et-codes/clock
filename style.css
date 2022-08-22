@@ -1,7 +1,8 @@
 body {
-  background: gray;
+  background: rgb(64, 64, 64);
   color: lightgray;
   margin: auto;
+  padding: 32px;
   text-align: center;
 }
 
@@ -14,9 +15,21 @@ body {
 }
 
 footer {
-  margin-top: 64px;
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 32px;
 }
 
-a:hover {
-  font-weight: bold;
+img {
+  scale: 0.75;
+  transform: rotate(-360deg);
+  transition: transform 0.5s;
+  vertical-align: middle;
+}
+
+img:hover {
+  transform: rotate(360deg);
+  transition: transform 0.5s;
 }
