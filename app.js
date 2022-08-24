@@ -1,57 +1,49 @@
-const getTime = () => {
-  const time = new Date();
+const timeDiv = document.getElementById('time');
+const dateDiv = document.getElementById('date');
+const days = [
+  'Sunday', 'Monday', 'Tuesday', 'Wednesday',
+  'Thursday', 'Friday', 'Saturday'
+];
+const months = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'
+];
 
-  const timeString = [
-    String(time.getHours()).padStart(2, '0'),
-    String(time.getMinutes()).padStart(2, '0'),
-    String(time.getSeconds()).padStart(2, '0')
-  ].join(':');
+const getTimeString = (time) => {
+  const hours = String(time.getHours()).padStart(2, '0');
+  const minutes = String(time.getMinutes()).padStart(2, '0');
+  const seconds = String(time.getSeconds()).padStart(2, '0');
 
-  return timeString;
+  return `${hours}:${minutes}:${seconds}`;
 };
 
 const getOrdinalDate = (date) => {
-  const j = date % 10
-  const k = date % 100;
-  if (j == 1 && k != 11) {
+  const rightDigit = date % 10;
+  if (rightDigit == 1 && date != 11) {
     return date + 'st';
   }
-  if (j == 2 && k != 12) {
+  if (rightDigit == 2 && date != 12) {
     return date + 'nd';
   }
-  if (j == 3 && k != 13) {
+  if (rightDigit == 3 && date != 13) {
     return date + 'rd';
   }
   return date + 'th';
 };
 
-const getDate = () => {
-  const date = new Date();
-  const day = [
-    'Sunday', 'Monday', 'Tuesday', 'Wednesday',
-    'Thursday', 'Friday', 'Saturday'
-  ];
-  const month = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
+const getDateString = (date) => {
+  const day = days[date.getDay()];
+  const month = months[date.getMonth()];
+  const dayOfMonth = getOrdinalDate(date.getDate());
+  const year = date.getFullYear();
 
-  const dateString = [
-    day[date.getDay()] + ',',
-    month[date.getMonth()],
-    getOrdinalDate(date.getDate()) + ',',
-    date.getFullYear()
-  ].join(' ');
-
-  return dateString;
+  return `${day}, ${month} ${dayOfMonth}, ${year}`;
 };
 
 const updateClock = () => {
-  const timeDiv = document.getElementById('time');
-  const dateDiv = document.getElementById('date');
-
-  timeDiv.innerHTML = getTime();
-  dateDiv.innerHTML = getDate();
+  const date = new Date();
+  timeDiv.innerHTML = getTimeString(date);
+  dateDiv.innerHTML = getDateString(date);
 };
 
 updateClock();
