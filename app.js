@@ -1,5 +1,3 @@
-const timeDiv = document.getElementById('time');
-const dateDiv = document.getElementById('date');
 const days = [
   'Sunday', 'Monday', 'Tuesday', 'Wednesday',
   'Thursday', 'Friday', 'Saturday'
@@ -41,6 +39,9 @@ const getDateString = (date) => {
 };
 
 const updateClock = () => {
+  const timeDiv = document.getElementById('time');
+  const dateDiv = document.getElementById('date');
+
   const date = new Date();
   timeDiv.innerHTML = getTimeString(date);
   dateDiv.innerHTML = getDateString(date);
